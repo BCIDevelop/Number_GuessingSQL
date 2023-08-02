@@ -18,3 +18,32 @@ fi
 STATUS=0
 NUMBER_GUESSES=0
 RANDOM_NUMBER=$(( RANDOM % 1000 + 1 ))
+while (( STATUS == 0 )) 
+do
+ echo "Guess the secret number between 1 and 1000:"
+ read NUMBER
+ if [[ $NUMBER =~ ^[0-9]+$ ]] 
+ then
+  NUMBER_RESIDE=$(( RANDOM_NUMBER - NUMBER ))
+  case $NUMBER_RESIDE in
+  [1-9]*) 
+  NUMBER_GUESSES=$(( NUMBER_GUESSES + 1 ))
+  echo "It's higher than that, guess again:"
+  ;;
+  0) 
+
+  NUMBER_GUESSES=$(( NUMBER_GUESSES + 1 ))
+  ADD_GAME=$($PSQL "INSERT INTO games(guesses_to_win,user_id) VALUES($NUMBER_GUESSES,$USER_ID)")
+  STATUS=1
+  echo You guessed it in $NUMBER_GUESSES tries. The secret number was $RANDOM_NUMBER. Nice job!
+  ;;
+  -[1-9]*) 
+  echo "It's lower than that, guess again:"
+  NUMBER_GUESSES=$(( NUMBER_GUESSES + 1 ))
+  ;;
+  esac
+
+ else
+  echo "That is not an integer, guess again:"
+ fi
+done
