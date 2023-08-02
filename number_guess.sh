@@ -15,3 +15,6 @@ else
   IFS='|' read PLAYS BEST <<< $GAME_INFO
   echo Welcome back, $USERNAME! You have played $PLAYS games, and your best game took $BEST guesses.
 fi
+STATUS=0
+NUMBER_GUESSES=0
+RANDOM_NUMBER=$(( RANDOM % 1000 + 1 ))
