@@ -31,7 +31,6 @@ do
   echo "It's higher than that, guess again:"
   ;;
   0) 
-
   NUMBER_GUESSES=$(( NUMBER_GUESSES + 1 ))
   ADD_GAME=$($PSQL "INSERT INTO games(guesses_to_win,user_id) VALUES($NUMBER_GUESSES,$USER_ID)")
   STATUS=1
@@ -42,7 +41,6 @@ do
   NUMBER_GUESSES=$(( NUMBER_GUESSES + 1 ))
   ;;
   esac
-
  else
   echo "That is not an integer, guess again:"
  fi
