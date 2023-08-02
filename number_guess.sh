@@ -34,7 +34,7 @@ do
   NUMBER_GUESSES=$(( NUMBER_GUESSES + 1 ))
   ADD_GAME=$($PSQL "INSERT INTO games(guesses_to_win,user_id) VALUES($NUMBER_GUESSES,$USER_ID)")
   STATUS=1
-  echo You guessed it in $NUMBER_GUESSES tries. The secret number was $RANDOM_NUMBER. Nice job!
+  echo "You guessed it in $NUMBER_GUESSES tries. The secret number was $RANDOM_NUMBER. Nice job!"
   ;;
   -[1-9]*) 
   echo "It's lower than that, guess again:"
