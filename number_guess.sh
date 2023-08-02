@@ -13,7 +13,7 @@ else
   GAME_INFO=$($PSQL "SELECT COUNT(*),MIN(guesses_to_win) FROM users INNER JOIN games USING(user_id) WHERE user_id=$USER_ID GROUP BY user_id")
 
   IFS='|' read PLAYS BEST <<< $GAME_INFO
-  echo Welcome back, $USERNAME! You have played $PLAYS games, and your best game took $BEST guesses.
+  echo "Welcome back, $USERNAME! You have played $PLAYS games, and your best game took $BEST guesses."
 fi
 STATUS=0
 NUMBER_GUESSES=0
